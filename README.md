@@ -1,6 +1,7 @@
 # TimerManager
 基于GCD实现的定时器、倒计时 管理工具类
-// 单例
+
+// 单例 计时器
 + (ZTGCDTimerManager *)sharedInstance;
 
 /**
