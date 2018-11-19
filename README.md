@@ -1,6 +1,6 @@
 # TimerManager
 基于GCD实现的定时器、倒计时 管理工具类
-
+```
 // 单例 计时器
 + (ZTGCDTimerManager *)sharedInstance;
 
@@ -91,5 +91,5 @@ dispatch_resume(timer);   ／    dispatch_source_cancel(timer);
 
 demo代码中支撑repeats选项，类似NSTimer的repeats，当repeats = No时，在激活timer并回调block事件后dispatch_source_cancel掉当前dispatch_source_t  timer即可，如果repeats=YES，那么timer会一个周期接一个周期的执行，直到你手动cancel掉这个timer，你可以在dealloc方法里面做cancel，这样timer恰好运行于整个对象的生命周期中。这里不必要担心NSTimer因dealloc始终无法调而产生的内存泄漏问题，
 你也可以通过queue参数控制这个timer所添加到的线程，也就是action最终执行的线程。传入nil则会默认放到子线程中执行。UI相关的操作需要传入dispatch_get_main_queue()以放到主线程中执行。
-
+```
 写到这里，基本上可以满足开发要求，然而我们可以更加变态，假设这样的场景，每次开始新一次的计时前，需要取消掉上一次的计时任务 或者 将上一次计时的任务，合并到新的一次计时中，最终一并执行！针对这两种场景，也已经集成到上面的接口scheduleGCDTimerWithName中。具体代码请看demo！
